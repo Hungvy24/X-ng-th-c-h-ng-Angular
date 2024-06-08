@@ -7,13 +7,13 @@
 <countdown [config]="config" />
 <form [formGroup]="bidForm" (ngSubmit)="handleSubmit()">
   <input type="number" formControlName="price" class="form-control rounded-lg" placeholder="Enter price"/><br>
-  <button type="submit" class="btn btn-primary w-full">Bid</button>
+  <button type="submit" class="btn btn-primary w-full" [disabled]="bidForm.controls['price'].value < product.bidPriceMax">Bid</button>
 </form>
 <p class="text-danger">bidPriceMax : {{ product.bidPriceMax }}</p>
 </div>
 <div class=" block border border-black p-5 w-[300px] rounded-md shadow-md ">
   @for (bid of product.bids; track bid) {
-    <p class="text-right flex">{{ bid.user.username }} - {{ bid.createdAt | date : "dd/MM/yyyy" }} - {{ bid.price }}$</p>
+    <p class="text-right flex">{{ bid.user.username }} - {{ bid.createdAt | date : "dd/MM/yyyy" }} </p>
     }
 </div>
  }
