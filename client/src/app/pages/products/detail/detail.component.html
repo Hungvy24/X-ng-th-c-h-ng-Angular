@@ -1,0 +1,21 @@
+@if(product) {
+<div class="product text-center p-4 mb-5 shadow rounded bg-white text-dark w-50 mx-auto mt-5">
+  <img [src]="product.image" class="w-[100%]" />
+  <h2 class="text-2xl">{{ product.title }}</h2>
+  <p class="">{{ product.description }}</p>
+
+<countdown [config]="config" />
+<form [formGroup]="bidForm" (ngSubmit)="handleSubmit()">
+  <input type="number" formControlName="price" class="form-control rounded-lg" placeholder="Enter price"/><br>
+  <button type="submit" class="btn btn-primary w-full">Bid</button>
+</form>
+<p class="text-danger">bidPriceMax : {{ product.bidPriceMax }}</p>
+</div>
+<div class=" block border border-black p-5 w-[300px] rounded-md shadow-md ">
+  @for (bid of product.bids; track bid) {
+    <p class="text-right flex">{{ bid.user.username }} - {{ bid.createdAt | date : "dd/MM/yyyy" }} - {{ bid.price }}$</p>
+    }
+</div>
+ }
+
+
